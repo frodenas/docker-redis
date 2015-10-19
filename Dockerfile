@@ -3,9 +3,9 @@ MAINTAINER Ferran Rodenas <frodenas@gmail.com>
 
 # Install and configure Redis 2.8
 RUN cd /tmp && \
-    wget http://download.redis.io/releases/redis-2.8.13.tar.gz && \
-    tar xzvf redis-2.8.13.tar.gz && \
-    cd redis-2.8.13 && \
+    wget http://download.redis.io/releases/redis-2.8.22.tar.gz && \
+    tar xzvf redis-2.8.22.tar.gz && \
+    cd redis-2.8.22 && \
     make && \
     make install && \
     cp -f src/redis-sentinel /usr/local/bin && \
