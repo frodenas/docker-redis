@@ -4,7 +4,7 @@ A Dockerfile that produces a Docker Image for [Redis](http://redis.io/).
 
 ## Redis version
 
-The `master` branch currently hosts Redis 2.8.
+The `master` branch currently hosts Redis 3.2.
 
 Different versions of Redis are located at the github repo [branches](https://github.com/frodenas/docker-redis/branches).
 
@@ -12,10 +12,13 @@ Different versions of Redis are located at the github repo [branches](https://gi
 
 ### Build the image
 
-To create the image `frodenas/redis`, execute the following command on the `docker-redis` folder:
+To create the image `frodenas/redis`, execute the following command:
 
 ```
-$ docker build -t frodenas/redis .
+docker build -t frodenas/redis .
+
+REDIS_VERSION=$(grep 'ENV REDIS_VERSION' Dockerfile | awk '{print $3}')
+docker build -t frodenas/redis:$REDIS_VERSION .
 ```
 
 ### Run the image
@@ -23,7 +26,7 @@ $ docker build -t frodenas/redis .
 To run the image and bind to host port 6379:
 
 ```
-$ docker run -d --name redis -p 6379:6379 frodenas/redis
+docker run -d --name redis -p 6379:6379 frodenas/redis
 ```
 
 The first time you run your container, a new random password will be generated. To get the password,
@@ -84,4 +87,4 @@ There are also additional volumes at:
 
 ## Copyright
 
-Copyright (c) 2014 Ferran Rodenas. See [LICENSE](https://github.com/frodenas/docker-redis/blob/master/LICENSE) for details.
+Copyright (c) 2014-2017 Ferran Rodenas. See [LICENSE](https://github.com/frodenas/docker-redis/blob/master/LICENSE) for details.
