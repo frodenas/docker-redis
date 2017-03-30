@@ -16,9 +16,7 @@ To create the image `frodenas/redis`, execute the following command:
 
 ```
 docker build -t frodenas/redis .
-
-REDIS_VERSION=$(grep 'ENV REDIS_VERSION' Dockerfile | awk '{print $3}')
-docker build -t frodenas/redis:$REDIS_VERSION .
+docker build -t frodenas/redis:3.2 .
 ```
 
 ### Run the image
@@ -33,7 +31,7 @@ The first time you run your container, a new random password will be generated. 
 check the logs of the container by running:
 
 ```
-docker logs <CONTAINER_ID>
+docker logs redis
 ```
 
 You will see an output like the following:
