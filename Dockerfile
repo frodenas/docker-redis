@@ -1,5 +1,5 @@
 FROM frodenas/ubuntu
-MAINTAINER Ferran Rodenas <frodenas@gmail.com>
+LABEL maintainer="Ferran Rodenas <frodenas@gmail.com>, Dr Nic Williams <drnic@starkandwayne.com>"
 
 # Install and configure Redis 2.8
 ENV REDIS_VERSION 3.2.8
