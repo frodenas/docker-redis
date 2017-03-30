@@ -2,10 +2,11 @@ FROM frodenas/ubuntu
 MAINTAINER Ferran Rodenas <frodenas@gmail.com>
 
 # Install and configure Redis 2.8
+ENV REDIS_VERSION 3.2.8
 RUN cd /tmp && \
-    wget http://download.redis.io/releases/redis-2.8.23.tar.gz && \
-    tar xzvf redis-2.8.23.tar.gz && \
-    cd redis-2.8.23 && \
+    wget http://download.redis.io/releases/redis-${REDIS_VERSION}.tar.gz && \
+    tar xzvf redis-${REDIS_VERSION}.tar.gz && \
+    cd redis-${REDIS_VERSION} && \
     make && \
     make install && \
     cp -f src/redis-sentinel /usr/local/bin && \
