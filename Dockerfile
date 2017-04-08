@@ -3,8 +3,12 @@ LABEL maintainer="Ferran Rodenas <frodenas@gmail.com>, Dr Nic Williams <drnic@st
 
 # Install and configure Redis 2.8
 ENV REDIS_VERSION 3.2.8
+ENV REDIS_DOWNLOAD_URL http://download.redis.io/releases/redis-${REDIS_VERSION}.tar.gz
+ENV REDIS_DOWNLOAD_SHA1 6780d1abb66f33a97aad0edbe020403d0a15b67f
+
 RUN cd /tmp && \
-    wget http://download.redis.io/releases/redis-${REDIS_VERSION}.tar.gz && \
+    wget -O redis-${REDIS_VERSION}.tar.gz "$REDIS_DOWNLOAD_URL"  && \
+    echo "$REDIS_DOWNLOAD_SHA1 *redis-${REDIS_VERSION}.tar.gz" | sha1sum -c - && \
     tar xzvf redis-${REDIS_VERSION}.tar.gz && \
     cd redis-${REDIS_VERSION} && \
     make && \
