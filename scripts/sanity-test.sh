@@ -6,7 +6,7 @@ set -e # fail fast
 
 echo Sanity testing ${service_plan_image:-${image:-Redis}} with $credentials
 
-host=$(echo $credentials | jq -r '.host // .credentials.host // ""')
+host=$(echo $credentials | jq -r '.host // .hostname // .credentials.host // .credentials.hostname // ""')
 port=$(echo $credentials | jq -r '.port // .credentials.port // ""')
 password=$(echo $credentials | jq -r '.password // .credentials.password // ""')
 
