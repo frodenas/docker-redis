@@ -21,11 +21,14 @@ RUN cd /tmp && \
     sed -i 's/^\(dir .*\)$/# \1\ndir \/data/' /etc/redis/redis.conf && \
     sed -i 's/^\(appendonly .*\)$/# \1\nappendonly yes/' /etc/redis/redis.conf && \
     sed -i 's/^\(logfile .*\)$/# \1/' /etc/redis/redis.conf && \
+    apt-get update && \
+    apt-get install -y --force-yes jq && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Add scripts
 ADD scripts /scripts
-RUN chmod +x /scripts/*.sh
+ADD scripts/sanity-test.sh /usr/bin/sanity-test
+RUN chmod +x /scripts/*.sh /usr/bin/sanity-test
 RUN touch /.firstrun
 
 # Command to run
