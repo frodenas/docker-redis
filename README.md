@@ -83,6 +83,16 @@ There are also additional volumes at:
 
 * `/etc/redis` which exposes Redis's configuration
 
+### Use image to test Redis
+
+This image includes `sanity-test` command that can interact with a Redis service (for example, another running container of this image).
+
+```
+$ docker run --entrypoint '' \
+  -e credentials='{"hostname":"10.0.0.0","port":40000,"password":"qwerty"}' \
+  frodenas/redis sanity-test
+```
+
 ## Copyright
 
 Copyright (c) 2014-2017 Ferran Rodenas. See [LICENSE](https://github.com/frodenas/docker-redis/blob/master/LICENSE) for details.
