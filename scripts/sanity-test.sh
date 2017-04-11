@@ -10,9 +10,9 @@ host=$(echo $credentials | jq -r '.host // .hostname // .credentials.host // .cr
 port=$(echo $credentials | jq -r '.port // .credentials.port // ""')
 password=$(echo $credentials | jq -r '.password // .credentials.password // ""')
 
-: ${host:?missing from binding credentials}
-: ${port:?missing from binding credentials}
-: ${password:?missing from binding credentials}
+: ${host:?missing from binding credentials - host or hostname}
+: ${port:?missing from binding credentials - port}
+: ${password:?missing from binding credentials - password}
 
 echo "set sanity-test 1"
 redis-cli -h $host -p $port -a $password set sanity-test 1
