@@ -93,6 +93,20 @@ $ docker run --entrypoint '' \
   frodenas/redis sanity-test
 ```
 
+### Deploy the image with BOSH
+
+If you have BOSH, with cloud config, you can deploy the image:
+
+```
+bosh2 deploy bosh-redis.yml --vars-store creds.yml
+```
+
+To get the randomly generated Redis password:
+
+```
+bosh2 int creds.yml --path /redis-password
+```
+
 ## Copyright
 
 Copyright (c) 2014-2017 Ferran Rodenas. See [LICENSE](https://github.com/frodenas/docker-redis/blob/master/LICENSE) for details.
