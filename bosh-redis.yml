@@ -24,6 +24,9 @@ instance_groups:
         - name: redis
           image: "frodenas/redis"
           tag: "3.2"
+          # tag: ((redis-image-tag))
+          # uncomment, and pass -v redis-image-tag=3.2
+          # OR, include -o bosh-op-select-tag.yml
           bind_ports:
             - "6379:6379"
           bind_volumes: [/data]
