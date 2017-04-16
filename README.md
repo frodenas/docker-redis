@@ -93,6 +93,23 @@ $ docker run --entrypoint '' \
   frodenas/redis sanity-test
 ```
 
+You can also easily use `sanity-test` command to self-test a running container:
+
+```
+docker run -d --name redis -p 6379:6379 frodenas/redis && \
+  docker exec -ti redis sanity-test
+```
+
+The output will look similar to:
+
+```
+No $credentials provided, entering self-test mode.
+Sanity testing Redis with {"hosthame":"localhost","host":"localhost","port":6379,"password":"EHaDbp6TyVaF7rsI"}
+set sanity-test 1
+OK
+get sanity-test = 1
+```
+
 ### Deploy the image with BOSH
 
 If you have BOSH, with cloud config, you can deploy the image backed by a persistent disk volume managed by BOSH:

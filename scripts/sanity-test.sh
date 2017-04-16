@@ -2,7 +2,14 @@
 
 set -e # fail fast
 
-: ${credentials:?required}
+if [[ ${credentials:-x} == "x" ]]; then
+  echo "No \$credentials provided, entering self-test mode."
+  if [[ -f /.firstrun ]]; then
+    echo Still starting Redis, waiting...
+    sleep 2
+  fi
+  credentials=$(cat /config/credentials.json)
+fi
 
 echo Sanity testing ${service_plan_image:-${image:-Redis}} with $credentials
 
